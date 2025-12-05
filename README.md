@@ -10,4 +10,5 @@
 
 <img width="1695" height="874" alt="image" src="https://github.com/user-attachments/assets/e74a1248-5fca-4bf1-b1fb-b494724a3f19" />
 
-
+ссылка на pages
+https://genaualter.github.io/lab_6_/
