@@ -1,0 +1,355 @@
+/* 
+   Основной файл стилей для Cultist Simulator Zhalkaya Parodia
+   Импортирует дополнительные стили из папки css/
+*/
+
+/* Импорт дополнительных стилей */
+@import url('css/cards.css');
+@import url('css/modal.css');
+@import url('css/game-ui.css');
+
+/* Базовые сбросы и глобальные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', serif;
+}
+
+body {
+    background: #1a1a1a;
+    color: #d4af37;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><path d="M20,20 L80,80 M80,20 L20,80" stroke="%23d4af37" stroke-width="2"/></svg>');
+    position: relative;
+    overflow-x: hidden; /* Разрешаем горизонтальную прокрутку */
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Заголовок */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: #d4af37;
+}
+
+/* Игровая область */
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    position: relative;
+}
+
+/* Область стола для карт - теперь без ограничений по переполнению */
+.desk-area {
+    min-height: 600px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+    overflow: visible; /* Карты могут выходить за пределы */
+    min-width: 800px;
+}
+
+/* Лог событий */
+.log {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.log h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #d4af37;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    color: #e6d8a9;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+/* Значение ресурса на картах */
+.resource-value {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #d4af37;
+    background: rgba(0,0,0,0.7);
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+/* Панель описания карты */
+.card-description-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #d4af37;
+    border-radius: 5px;
+    padding: 15px 20px;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1000;
+    color: #e6d8a9;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
+    .game-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .desk-area {
+        min-height: 500px;
+        min-width: auto;
+    }
+    
+    .controls-hint {
+        display: none;
+    }
+    
+    .auto-group-btn {
+        bottom: 10px;
+        right: 10px;
+        top: auto;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card-description-panel {
+        width: 95%;
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Для очень широких экранов */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .desk-area {
+        min-width: 1000px;
+    }
+}
+
+/* Стили для модальных окон выбора аспекта */
+.aspect-choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.aspect-choice {
+    background: #2a2a2a;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.aspect-choice:hover {
+    background: #3a3a3a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.aspect-choice-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.aspect-emoji {
+    font-size: 2rem;
+}
+
+.aspect-name {
+    font-weight: bold;
+    color: #d4af37;
+    font-size: 1.1rem;
+}
+
+.aspect-desc {
+    font-size: 0.85rem;
+    color: #e6d8a9;
+    line-height: 1.4;
+}
+
+.aspect-cost {
+    font-size: 0.8rem;
+    color: #ffd700;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.location-choice {
+    border-color: #4b0082;
+}
+
+.location-choice:hover {
+    background: #3a2a5a;
+}
+
+/* Кнопка отмены в модальном окне выбора культа */
+#cancel-cult {
+    background: #2a2a2a;
+    border: 1px solid #8b0000;
+    color: #ff6b6b;
+}
+
+#cancel-cult:hover {
+    background: #3a0000;
+}
+
+/* Стили для модального окна карьеры */
+#career-modal .button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#become-clerk {
+    background: #2a2a2a;
+    border: 1px solid #4682b4;
+    color: #87ceeb;
+}
+
+#become-clerk:hover {
+    background: #1a3a5a;
+}
+
+#continue-cult {
+    background: #2a2a2a;
+    border: 1px solid #006400;
+    color: #90ee90;
+}
+
+#continue-cult:hover {
+    background: #003300;
+}
+
+/* Прокрутка для контента карт */
+.card-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.card-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 2px;
+}
+
+.card-content::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 2px;
+}
+
+.card-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.8);
+}
+
+/* Анимация для описания карты */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.card-description-panel {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Стили для цветного текста в описаниях */
+.card-description-panel .edge { color: #32cd32; }
+.card-description-panel .winter { color: #87ceeb; }
+.card-description-panel .heart { color: #ff69b4; }
+.card-description-panel .grail { color: #d2691e; }
+.card-description-panel .moth { color: #d2b48c; } /* Серо-телесный */
+.card-description-panel .lantern { color: #fffacd; }
+.card-description-panel .forge { color: #ffa07a; }
+.card-description-panel .secret-histories { color: #ff69b4; } /* Розовый */
+.card-description-panel .knock { color: #9370db; } /* Фиолетовый */
+
+/* Улучшенный скролл для модальных окон */
+.aspect-choices::-webkit-scrollbar {
+    width: 8px;
+}
+
+.aspect-choices::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.aspect-choices::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 4px;
+}
+
+.aspect-choices::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.8);
+}
+
+/* Подсветка текущего выбора аспекта */
+.aspect-choice.selected {
+    border-color: #ffd700;
+    background: #3a2a2a;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}

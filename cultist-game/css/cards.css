@@ -1,0 +1,524 @@
+/*
+   Стили для карт и стеков карт
+   Cultist Simulator Zhalkaya Parodia
+*/
+
+/* Базовые стили карты */
+.card {
+    width: 160px;
+    height: 220px;
+    background: #2a2a2a;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    padding: 12px;
+    position: absolute;
+    cursor: grab;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.card:active {
+    cursor: grabbing;
+    z-index: 100;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+}
+
+/* Карты без описания - только заголовок и значок */
+.card.no-description .card-content {
+    display: none;
+}
+
+/* Заголовок карты */
+.card-header {
+    font-weight: bold;
+    border-bottom: 1px solid #d4af37;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #d4af37;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* Контент карты */
+.card-content {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #e6d8a9;
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 80px;
+}
+
+/* Цвета для разных типов карт */
+
+/* Ресурсы - новые эмодзи */
+.card.resource {
+    border-color: #1e90ff;
+}
+
+.card.resource .card-header {
+    border-color: #1e90ff;
+    color: #87cefa;
+}
+
+/* Карта "Здоровье" */
+.card[data-title="Здоровье"] {
+    border-color: #dc143c;
+}
+
+.card[data-title="Здоровье"] .card-header {
+    border-color: #dc143c;
+    color: #ff69b4;
+}
+
+.card[data-title="Здоровье"] .card-header::before {
+    content: "❤️";
+    margin-right: 5px;
+}
+
+/* Карта "Рассудок" */
+.card[data-title="Рассудок"] {
+    border-color: #4682b4;
+}
+
+.card[data-title="Рассудок"] .card-header {
+    border-color: #4682b4;
+    color: #87ceeb;
+}
+
+.card[data-title="Рассудок"] .card-header::before {
+    content: "🧠";
+    margin-right: 5px;
+}
+
+/* Карта "Деньги" */
+.card[data-title="Деньги"] .card-header::before {
+    content: "💰";
+    margin-right: 5px;
+}
+
+/* Аспекты */
+.card.aspect {
+    border-width: 3px;
+}
+
+.card.aspect .card-header {
+    font-weight: bold;
+}
+
+/* Последователи */
+.card.follower {
+    border-color: #006400;
+}
+
+.card.follower .card-header {
+    border-color: #006400;
+    color: #90ee90;
+}
+
+/* Места */
+.card.location {
+    border-color: #4b0082;
+}
+
+.card.location .card-header {
+    border-color: #4b0082;
+    color: #c9a0ff;
+}
+
+/* Культ */
+.card.cult {
+    border-color: #d4af37;
+    border-width: 4px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+}
+
+.card.cult .card-header {
+    border-color: #d4af37;
+    color: #ffd700;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Специфичные цвета для разных типов аспектов */
+
+/* Грань - ЗЕЛЕНАЯ */
+.card[data-knowledge-type="EDGE"] {
+    border-color: #32cd32;
+    background: linear-gradient(135deg, #1a2a1a 0%, #0a1a0a 100%);
+}
+
+.card[data-knowledge-type="EDGE"] .card-header {
+    border-color: #32cd32;
+    color: #90ee90;
+}
+
+.card[data-knowledge-type="EDGE"] .card-header::before {
+    content: "🔪";
+    margin-right: 5px;
+}
+
+/* Зима */
+.card[data-knowledge-type="WINTER"] {
+    border-color: #4682b4;
+    background: linear-gradient(135deg, #1a2a3a 0%, #0a1a2a 100%);
+}
+
+.card[data-knowledge-type="WINTER"] .card-header {
+    border-color: #4682b4;
+    color: #87ceeb;
+}
+
+.card[data-knowledge-type="WINTER"] .card-header::before {
+    content: "❄️";
+    margin-right: 5px;
+}
+
+/* Сердце */
+.card[data-knowledge-type="HEART"] {
+    border-color: #dc143c;
+    background: linear-gradient(135deg, #3a1a2a 0%, #2a0a1a 100%);
+}
+
+.card[data-knowledge-type="HEART"] .card-header {
+    border-color: #dc143c;
+    color: #ff69b4;
+}
+
+.card[data-knowledge-type="HEART"] .card-header::before {
+    content: "❤️";
+    margin-right: 5px;
+}
+
+/* Чаша */
+.card[data-knowledge-type="GRAIL"] {
+    border-color: #8b4513;
+    background: linear-gradient(135deg, #3a2a1a 0%, #2a1a0a 100%);
+}
+
+.card[data-knowledge-type="GRAIL"] .card-header {
+    border-color: #8b4513;
+    color: #d2691e;
+}
+
+.card[data-knowledge-type="GRAIL"] .card-header::before {
+    content: "🍷";
+    margin-right: 5px;
+}
+
+/* Мотылек - СЕРО-ТЕЛЕСНЫЙ */
+.card[data-knowledge-type="MOTH"] {
+    border-color: #d2b48c;
+    background: linear-gradient(135deg, #3a3a2a 0%, #2a2a1a 100%);
+}
+
+.card[data-knowledge-type="MOTH"] .card-header {
+    border-color: #d2b48c;
+    color: #f5deb3;
+}
+
+.card[data-knowledge-type="MOTH"] .card-header::before {
+    content: "🦋";
+    margin-right: 5px;
+}
+
+/* Лампада */
+.card[data-knowledge-type="LANTERN"] {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #3a3a1a 0%, #2a2a0a 100%);
+}
+
+.card[data-knowledge-type="LANTERN"] .card-header {
+    border-color: #ffd700;
+    color: #fffacd;
+}
+
+.card[data-knowledge-type="LANTERN"] .card-header::before {
+    content: "🪔";
+    margin-right: 5px;
+}
+
+/* Кузня */
+.card[data-knowledge-type="FORGE"] {
+    border-color: #ff4500;
+    background: linear-gradient(135deg, #3a1a0a 0%, #2a0a00 100%);
+}
+
+.card[data-knowledge-type="FORGE"] .card-header {
+    border-color: #ff4500;
+    color: #ffa07a;
+}
+
+.card[data-knowledge-type="FORGE"] .card-header::before {
+    content: "⚒️";
+    margin-right: 5px;
+}
+
+/* Тайные истории - РОЗОВЫЙ */
+.card[data-knowledge-type="SECRET_HISTORIES"] {
+    border-color: #ff69b4;
+    background: linear-gradient(135deg, #3a1a2a 0%, #2a0a1a 100%);
+}
+
+.card[data-knowledge-type="SECRET_HISTORIES"] .card-header {
+    border-color: #ff69b4;
+    color: #ffb6c1;
+}
+
+.card[data-knowledge-type="SECRET_HISTORIES"] .card-header::before {
+    content: "📜";
+    margin-right: 5px;
+}
+
+/* Стук - ФИОЛЕТОВЫЙ (ключ) */
+.card[data-knowledge-type="KNOCK"] {
+    border-color: #9370db;
+    background: linear-gradient(135deg, #2a1a3a 0%, #1a0a2a 100%);
+}
+
+.card[data-knowledge-type="KNOCK"] .card-header {
+    border-color: #9370db;
+    color: #d8bfd8;
+}
+
+.card[data-knowledge-type="KNOCK"] .card-header::before {
+    content: "🔑";
+    margin-right: 5px;
+}
+
+/* Стили для стеков карт */
+.card.stack {
+    border-style: solid;
+    border-width: 3px;
+    min-height: 240px;
+    background: rgba(42, 42, 42, 0.95);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Стек аспектов наследует цвет карт */
+.stack.aspect {
+    border-color: inherit;
+    background: inherit;
+}
+
+.stack.aspect .card-header {
+    border-color: inherit;
+    color: inherit;
+}
+
+.stack.follower {
+    border-color: #006400;
+    background: linear-gradient(135deg, #1a2a1a 0%, #0a1a0a 100%);
+}
+
+.stack.follower .card-header {
+    border-color: #006400;
+    color: #90ee90;
+}
+
+.stack.location {
+    border-color: #4b0082;
+    background: linear-gradient(135deg, #2a1a3a 0%, #1a0a2a 100%);
+}
+
+.stack.location .card-header {
+    border-color: #4b0082;
+    color: #c9a0ff;
+}
+
+/* Счетчик стека */
+.stack-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(212, 175, 55, 0.95);
+    color: #1a1a1a;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 2;
+    border: 2px solid #1a1a1a;
+}
+
+/* Контролы стека */
+.stack-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+}
+
+.ungroup-btn {
+    background: rgba(139, 0, 0, 0.9);
+    border: 1px solid #8b0000;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.ungroup-btn:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+
+/* Анимации свечения для карт аспектов при наведении */
+@keyframes aspectGlow {
+    0% { box-shadow: 0 0 5px currentColor, 0 0 10px currentColor; }
+    50% { box-shadow: 0 0 15px currentColor, 0 0 30px currentColor; }
+    100% { box-shadow: 0 0 5px currentColor, 0 0 10px currentColor; }
+}
+
+.card[data-knowledge-type="EDGE"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #00ff00;
+}
+
+.card[data-knowledge-type="WINTER"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #00bfff;
+}
+
+.card[data-knowledge-type="HEART"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #ff1493;
+}
+
+.card[data-knowledge-type="GRAIL"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #daa520;
+}
+
+.card[data-knowledge-type="MOTH"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #d2b48c;
+}
+
+.card[data-knowledge-type="LANTERN"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #ffff00;
+}
+
+.card[data-knowledge-type="FORGE"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #ff6347;
+}
+
+.card[data-knowledge-type="SECRET_HISTORIES"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #ff69b4;
+}
+
+.card[data-knowledge-type="KNOCK"]:hover {
+    animation: aspectGlow 2s infinite;
+    border-color: #9370db;
+}
+
+/* Подсветка при перетаскивании на стек */
+.card.drag-over {
+    border-style: dashed;
+    border-color: #ffd700 !important;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* Стили для выбранной карты (при клике) */
+.card.selected {
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 20px #ffd700, 0 0 30px rgba(255, 215, 0, 0.5) !important;
+    z-index: 1000;
+}
+
+/* Карты, которые можно добавить в стек (подсветка) */
+.card.can-stack {
+    border-color: #32cd32 !important;
+    box-shadow: 0 0 10px #32cd32;
+}
+
+/* Эффект при успешном добавлении в стек */
+@keyframes stackSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.stack-success {
+    animation: stackSuccess 0.5s ease-out;
+}
+
+/* Индикатор для карт, которые в стеке */
+.card.in-stack {
+    opacity: 0.9;
+    filter: brightness(0.8);
+}
+
+/* Стиль для карт последователей до создания культа */
+.card.follower:not([data-title*="Верный"]) {
+    border-style: dotted;
+    opacity: 0.8;
+}
+
+/* Стиль для верных последователей */
+.card.follower[data-title*="Верный"] {
+    border-style: solid;
+    border-width: 2px;
+    background: rgba(0, 100, 0, 0.1);
+}
+
+/* Эффект для новых карт */
+@keyframes newCard {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.card.new {
+    animation: newCard 0.5s ease-out;
+}
+
+/* Индикатор пустого стека (когда все карты удалены) */
+.stack.empty {
+    display: none;
+}
+
+/* Стили для стеков при наведении (как у обычных карт) */
+.stack:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
+}

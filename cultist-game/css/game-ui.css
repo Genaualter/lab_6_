@@ -1,0 +1,462 @@
+/*
+   Стили для игрового интерфейса
+   Cultist Simulator Zhalkaya Parodia
+*/
+
+/* Панель действий */
+.actions-panel {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    padding: 20px;
+    height: fit-content;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 50;
+}
+
+.actions-panel h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 10px;
+}
+
+.actions-panel h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #d4af37;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Элементы действий */
+.action {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 2px solid #d4af37;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #d4af37;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.action:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+.action:hover::before {
+    left: 100%;
+}
+
+.action.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #1a1a1a;
+    border-color: #666;
+    color: #666;
+}
+
+.action.disabled:hover {
+    background: #1a1a1a;
+    transform: none;
+    box-shadow: none;
+    border-color: #666;
+    color: #666;
+}
+
+.action.disabled:hover::before {
+    left: -100%;
+}
+
+/* Специальные стили для определенных действий */
+#action-study {
+    border-color: #ff8c00;
+    color: #ffb347;
+}
+
+#action-study:hover {
+    border-color: #ffa500;
+    color: #ffcc80;
+}
+
+#action-explore {
+    border-color: #4b0082;
+    color: #c9a0ff;
+}
+
+#action-explore:hover {
+    border-color: #8a2be2;
+    color: #d8bfff;
+}
+
+#action-ritual {
+    border-color: #9400d3;
+    color: #da70d6;
+}
+
+#action-ritual:hover {
+    border-color: #ba55d3;
+    color: #e6b8ff;
+}
+
+#action-create-cult {
+    border-color: #d4af37;
+    color: #ffd700;
+    background: linear-gradient(135deg, #3a2a1a 0%, #2a1a0a 100%);
+}
+
+#action-create-cult:hover {
+    border-color: #ffd700;
+    color: #ffff00;
+    background: linear-gradient(135deg, #4a3a2a 0%, #3a2a1a 100%);
+}
+
+/* Кнопка автоматической группировки (в правом нижнем углу) */
+.auto-group-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    padding: 12px 18px;
+    color: #d4af37;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    min-width: 120px;
+    justify-content: center;
+}
+
+.auto-group-btn:hover {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+.auto-group-btn:active {
+    transform: translateY(-1px);
+}
+
+.auto-group-btn kbd {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid #d4af37;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #ffd700;
+}
+
+/* Подсказка по управлению */
+.controls-hint {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    padding: 15px;
+    font-size: 0.85rem;
+    color: #d4af37;
+    z-index: 1000;
+    max-width: 320px;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.controls-hint kbd {
+    background: #2a2a2a;
+    border: 1px solid #d4af37;
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-family: monospace;
+    margin: 0 3px;
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.controls-hint div {
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.controls-hint div:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+/* Стили для статуса в панели действий */
+.actions-panel > div:last-child {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.actions-panel > div:last-child > div {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #e6d8a9;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.actions-panel > div:last-child > div:last-child {
+    border-bottom: none;
+}
+
+.actions-panel > div:last-child > div span {
+    font-weight: bold;
+    color: #d4af37;
+    font-size: 1.1rem;
+}
+
+/* Стили для заголовка игры */
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    color: #ffd700;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #d4af37;
+    background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%);
+    border-radius: 10px;
+}
+
+/* Стили для области стола */
+.desk-area {
+    min-height: 600px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: visible;
+    min-width: 800px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
+    .game-area {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-panel {
+        order: 2;
+        margin-top: 20px;
+    }
+    
+    .desk-area {
+        min-height: 500px;
+        min-width: auto;
+        order: 1;
+    }
+    
+    .controls-hint {
+        display: none;
+    }
+    
+    .auto-group-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        min-width: 100px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        padding: 8px;
+    }
+    
+    .actions-panel {
+        padding: 15px;
+    }
+    
+    .action {
+        padding: 10px 12px;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .actions-panel h2 {
+        font-size: 1.4rem;
+    }
+    
+    .actions-panel h3 {
+        font-size: 1.2rem;
+    }
+    
+    .action {
+        font-size: 0.95rem;
+        padding: 8px 10px;
+    }
+    
+    .auto-group-btn {
+        min-width: 90px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Дополнительные стили для лучшего отображения */
+.actions-panel {
+    backdrop-filter: blur(5px);
+}
+
+/* Индикатор стоимости действия */
+.action-cost {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.7);
+    color: #ffd700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Стили для счетчиков в действиях */
+.action-counter {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0,0,0,0.7);
+    color: #87cefa;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Анимация для кнопки Tab при нажатии */
+@keyframes tabPress {
+    0% { transform: translateY(-3px) scale(1); }
+    50% { transform: translateY(0) scale(0.98); }
+    100% { transform: translateY(-3px) scale(1); }
+}
+
+.auto-group-btn:active {
+    animation: tabPress 0.2s ease-out;
+}
+
+/* Градиентные границы для особых состояний */
+.action.highlight {
+    border-image: linear-gradient(45deg, #d4af37, #ffd700, #d4af37) 1;
+    animation: borderGlow 2s infinite;
+}
+
+@keyframes borderGlow {
+    0% { border-color: #d4af37; }
+    50% { border-color: #ffd700; }
+    100% { border-color: #d4af37; }
+}
+
+/* Стили для мобильной версии управления */
+.mobile-controls {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .mobile-btn {
+        background: #2a2a2a;
+        border: 1px solid #d4af37;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #d4af37;
+        cursor: pointer;
+    }
+}
+
+.action[title] {
+    position: relative;
+}
+
+.action[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.9);
+    color: #ffd700;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 1000;
+    border: 1px solid #d4af37;
+    margin-bottom: 5px;
+}
+/* Стили для стеков в интерфейсе */
+.stack {
+    border-style: solid !important;
+    border-width: 3px !important;
+}
+
+/* Улучшенный вид стеков аспектов */
+.stack[data-knowledge-type] {
+    border-style: solid !important;
+}
