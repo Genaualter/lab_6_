@@ -6,6 +6,8 @@
 
 Особенностью игры является персистентность — все прогрессы и позиции карт сохраняются в браузере. Атмосферу дополняет мрачный викторианский стиль с золотыми акцентами и таинственными символами на фоне, погружая игрока в мир оккультных тайн и опасных открытий.
 
-<img width="1695" height="874" alt="image" src="https://github.com/user-attachments/assets/e74a1248-5fca-4bf1-b1fb-b494724a3f19" />
 <img width="1906" height="934" alt="Снимок экрана 2025-12-05 103806" src="https://github.com/user-attachments/assets/09e9e5bb-593e-4a69-a51c-ace775185949" />
-![Uploading Снимок экрана 2025-12-05 103833.png…]()
+
+<img width="1695" height="874" alt="image" src="https://github.com/user-attachments/assets/e74a1248-5fca-4bf1-b1fb-b494724a3f19" />
+
+
